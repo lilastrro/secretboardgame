@@ -1,0 +1,169 @@
+body {
+    font-family: 'Vazir', sans-serif;
+    /* یک فونت فارسی زیبا */
+    text-align: center;
+    direction: rtl;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+.current-player {
+    position: fixed;
+    top: 0;   
+    right: 0;
+    margin-top: 1em;
+    margin-right: 1em;
+    font-size: 2rem;
+}
+
+#rollBtn {
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 8px;
+    font-size: 2.3rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 1em;
+    margin-left: 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#rollBtn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+#rollBtn:hover:not(:disabled) {
+    background: #0056b3;
+}
+
+#dice {
+    font-size: 48px;
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    transition: transform 0.6s ease;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 60px);
+    grid-auto-rows: 60px;
+    gap: 6px;
+    width: max-content;
+    margin: 20px auto 40px;
+    background: #e2e2e2;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px #ccc;
+}
+
+.cell {
+    background: #ffc0e0;
+    border: 2px solid #ff46A2;
+    background-size: contain;
+    position: relative;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.cell.hokm {
+    background-color: #ec8fff;
+    border: 2px dashed #ba00e1;
+    background-image: none;
+}
+
+.pawn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* اگر 2 مهره روی یک خانه باشن کنار هم نشون داده بشن */
+.p1 {
+    background: red;
+    left: 10px;
+}
+
+.p2 {
+    background: blue;
+    right: 10px;
+}
+
+.p1.pulse-turn {
+    animation: pulse-red 1.2s infinite;
+}
+.p2.pulse-turn {
+    animation: pulse-blue 1.2s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 12px rgba(255, 0, 0, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+@keyframes pulse-blue {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 0, 255, 0.5); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 12px rgba(0, 0, 255, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 0, 255, 0); }
+}
+
+@media (max-width: 600px) {
+    .pawn {
+        width: 4vw;
+        height: 4vw;
+        border-width: 0.4vw;
+    }
+
+    #rollBtn {
+        font-size: 4vw;
+        padding: 2vw 6vw;
+        border-radius: 2vw;
+    }
+
+    #game-info {
+        font-size: 4vw;
+        gap: 3vw;
+        flex-wrap: wrap;
+    }
+
+    .header {
+        font-size: 5vw;
+        margin: 3vw 0;
+    }
+}
